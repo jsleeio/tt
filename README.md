@@ -42,7 +42,7 @@ What just happened here?
 2. a SHA256 hash of _(title+date+otherdata)_ was calculated; this is the bucket
    ID
 3. `$TTID` is set to the bucket ID
-4. `$HOME/tt/*ID*` was created
+4. `$HOME/tt/$TTID` was created
 5. `$HISTFILE` is set to a file inside the bucket
 6. a subshell (`$SHELL`) is spawned
 7. (macOS/OSX only) the bucket directory has the comment field set to the
@@ -50,7 +50,6 @@ What just happened here?
 
     $ tt home
     /your/home/tt/4ced50
-
     $ echo $TTID
     4ced50
 
