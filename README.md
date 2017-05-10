@@ -50,6 +50,7 @@ What just happened here?
 
     $ tt home
     /your/home/tt/4ced50
+
     $ echo $TTID
     4ced50
 
