@@ -50,11 +50,13 @@ What just happened here?
 7. (macOS/OSX only) the bucket directory has the comment field set to the
    bucket title
 
+
     $ tt home
     /your/home/tt/4ced50
 
     $ echo $TTID
     4ced50
+
 
 And if on macOS/OSX, the bucket is discoverable with Spotlight, eg. via
 commandline:
