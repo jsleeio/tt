@@ -12,9 +12,7 @@ _die() {
 }
 
 _is_macos() {
-  local uname_s
-  unames="$(uname -s)"
-  [ "$?" == 0 ] && [ "$unames" == "Darwin" ]
+  [ "$(uname -s)" == "Darwin" ]
 }
 
 _init() {
