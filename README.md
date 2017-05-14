@@ -26,10 +26,12 @@ Clean-room, improved reimplementation of a tool I implemented while working at
 
 ### general usage
 
-    $ tt command [bucket_id]
+    $ tt command [:bucket_id]
 
 Most tasks assume that you want to work on the current bucket if you don't
 supply a bucket ID.
+
+If you do need to specify a bucket ID, prefix it with a colon, as above.
 
 ### create a bucket
 
@@ -62,6 +64,17 @@ commandline:
 
 Exit your shell as per normal when you're done.
 
+### tagging a bucket
+
+    $ tt tag :bucket_id foo bar baz
+
+### displaying bucket tags
+
+    $ tt tags
+    bar
+    baz
+    foo
+
 ### listing buckets
 
     $ tt ls
@@ -70,11 +83,11 @@ Exit your shell as per normal when you're done.
 
 ### re-entering an existing bucket
 
-    $ tt shell 4ced50
+    $ tt shell :4ced50
 
 ### marking a bucket for garbage collection
 
-    $ tt done 4ced50
+    $ tt done :4ced50
 
 Note the change in the DONE column:
 
@@ -82,9 +95,9 @@ Note the change in the DONE column:
     DATE        ID      DONE  TITLE
     2017-05-11  4ced50  Y     foo
 
-### changing your mind and keeping it
+### changing your mind
 
-    $ tt keep 4ced50
+    $ tt keep :4ced50
 
 ### display in macOS/OSX Finder
 
