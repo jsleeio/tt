@@ -187,7 +187,7 @@ case "$1" in
     "_${cmd}" "$@"
   ;;
   version)
-    echo 'tt 2.1'
+    echo 'tt 2.2'
     exit 0
   ;;
   help)
