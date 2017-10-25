@@ -76,7 +76,7 @@ _keep() {
 _shell() {
   _enter_current_or_arg "$1"
   export TTID="$1"
-  export HISTFILE="$_top_dir/$1/.history"
+  export HISTFILE="$_top_dir/${TTID:1}/.history"
   shift
   local _c
   if [ -n "$1" ] ; then
