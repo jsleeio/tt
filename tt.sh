@@ -82,7 +82,14 @@ _shell() {
   if [ -n "$1" ] ; then
     local _c="-c"
   fi
+  echo -n "$TTID" > "$_top_dir/last"
   exec "$SHELL" $_c "$@"
+}
+
+_last() {
+  local _last=""
+  read _last < "$_top_dir/last"
+  _shell "$_last"
 }
 
 _exec() {
@@ -165,15 +172,19 @@ _ls() {
 }
 
 _help() {
-  printf 'usage: create a new bucket\n\n'
+  printf 'usage: create a new bucket\n'
   printf '\ttt new "title for new bucket"\n\n'
-  printf 'usage: list buckets\n\n'
+  printf 'usage: list buckets\n'
   printf '\ttt ls\n\n'
-  printf 'usage: apply tags to a bucket\n\n'
+  printf 'usage: start a shell in a bucket\n'
+  printf '\ttt shell :id\n\n'
+  printf 'usage: start a shell in the last-accessed bucket\n'
+  printf '\ttt last\n\n'
+  printf 'usage: apply tags to a bucket\n'
   printf '\ttt tag :id tag1 [tag2 [..tagN]]\n\n'
-  printf 'usage: get bucket metadata. Current bucket, if no ID specified.\n\n'
+  printf 'usage: get bucket metadata. Current bucket, if no ID specified.\n'
   printf '\ttt (title|date|home) [:id]\n\n'
-  printf 'usage: garbage-collect all "done" buckets\n\n'
+  printf 'usage: garbage-collect all "done" buckets\n'
   printf '\ttt gc\n'
 }
 
@@ -186,8 +197,11 @@ case "$1" in
     shift
     "_${cmd}" "$@"
   ;;
+  last)
+    _last
+  ;;
   version)
-    echo 'tt 2.2'
+    echo 'tt 2.3'
     exit 0
   ;;
   help)
