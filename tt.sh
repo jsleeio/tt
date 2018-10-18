@@ -22,7 +22,7 @@ _init() {
 }
 
 _id() {
-  echo "$$.$USER.$(date +%s).$RANDOM.$*" | openssl sha -sha256 | cut -b 1-6
+  echo "$$.$USER.$(date +%s).$RANDOM.$*" | openssl sha256 | cut -b 1-6
 }
 
 _try_id() {
