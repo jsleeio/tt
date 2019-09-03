@@ -86,9 +86,15 @@ _shell() {
   exec "$SHELL" $_c "$@"
 }
 
-_last() {
+_readlast() {
   local _last=""
-  read _last < "$_top_dir/last"
+  read -r _last < "$_top_dir/last"
+  echo "$_last"
+}
+
+_last() {
+  local _last
+  _last=$(_readlast)
   _shell "$_last"
 }
 
@@ -107,7 +113,13 @@ _finder() {
 
 _gc() {
   cd "$_top_dir" || die "can't chdir: $_top_dir"
+  local _last
+  _last=$(_readlast | tr -d ':')
   _ls | awk '$3 == "Y" { print $2 }' | while read -r id ; do
+    if [ "$id" = "$_last" ] ; then
+      echo "gc: not collecting most-recently-used bucket: $id"
+      continue
+    fi
     rm -vrf "$id"
   done
 }
