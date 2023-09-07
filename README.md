@@ -114,6 +114,20 @@ Note the change in the DONE column:
     4ced50/.tt_title
     4ced50
 
+### starting a new Go project
+
+I added this feature because I make a lot of short-term Go gadgets in buckets
+when learning/exploring things.
+
+First, set a global Go module _prefix_ for `tt` to use:
+
+    echo github.com/jsleeio/tt > "$HOME/tt/newgo-prefix"
+
+Now try creating 
+
+    $ tt newgo widget-unsticker
+    go: creating new go.mod: module github.com/jsleeio/tt/ff2019/widget-unsticker
+
 ## ideas
 
 I will keep refining this. I'm particularly interested in improving integration

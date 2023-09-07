@@ -185,6 +185,28 @@ _ls() {
   ) | column -ts "${tab}"
 }
 
+_newgo() {
+  _enter_current_or_arg "$1"
+  if [[ $# -gt 1 ]] ; then
+    shift
+  fi
+  local id=""
+  if ! id="$(basename "$(pwd)")" ; then
+    _die "can't find bucket ID, halp"
+  fi
+  local name="$1"
+  local base=""
+  if [[ -z "$name" ]] ; then
+    _die "newgo: must supply an unqualified module name"
+  fi
+  local prefix_file="$_top_dir/newgo-prefix"
+  if ! prefix="$(cat "$prefix_file")" ; then
+    _die "please put a go module prefix like github.com/jsleeio/tt/go in $prefix_file"
+  fi
+  mkdir "$name" && cd "$name" || _die "can't create Go module directory, halp"
+  go mod init "$(echo "$prefix" | sed 's,/$,,')/$id/$name"
+}
+
 _help() {
   printf 'usage: create a new bucket\n'
   printf '\ttt new "title for new bucket"\n\n'
@@ -206,7 +228,7 @@ _init
 
 
 case "$1" in
-  new|finder|shell|ls|'done'|keep|gc|title|date|'exec'|home|tag|tags)
+  new|finder|shell|ls|'done'|keep|gc|title|date|'exec'|home|newgo|tag|tags)
     cmd="$1"
     shift
     "_${cmd}" "$@"
