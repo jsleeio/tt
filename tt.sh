@@ -228,6 +228,12 @@ _init
 
 
 case "$1" in
+  completion)
+    words='date done exec gc help home keep'
+    words="$words last ls new newgo shell tag"
+    words="$words tags title version"
+    echo "$words"
+  ;;
   new|finder|shell|ls|'done'|keep|gc|title|date|'exec'|home|newgo|tag|tags)
     cmd="$1"
     shift
