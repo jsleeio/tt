@@ -27,6 +27,18 @@ _id() {
     | cut -b 1-6
 }
 
+_find() {
+  # have to be careful here to handle $_top_dir that might have
+  # spaces in it. I *think* this approach is relatively safe
+  # (can you have null chars in a unix path?)
+  find "$_top_dir" -type f -maxdepth 2 -name .tt_title -print0 \
+    | while read -d $'\000' titlefile ; do 
+        if grep -q "$1" "$titlefile" ; then
+          basename "$(dirname "$titlefile")"
+        fi
+      done
+}
+
 _try_id() {
   if [[ "$1" =~ ^:{1}([a-f0-9]{6})$ ]] ; then
     echo "${BASH_REMATCH[1]}"
@@ -234,7 +246,7 @@ case "$1" in
     words="$words tags title version"
     echo "$words"
   ;;
-  new|finder|shell|ls|'done'|keep|gc|title|date|'exec'|home|newgo|tag|tags)
+  new|finder|find|shell|ls|'done'|keep|gc|title|date|'exec'|home|newgo|tag|tags)
     cmd="$1"
     shift
     "_${cmd}" "$@"
