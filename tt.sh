@@ -255,7 +255,7 @@ case "$1" in
     _last
   ;;
   version)
-    echo 'tt 2.3'
+    echo 'tt 2.6'
     exit 0
   ;;
   help)
