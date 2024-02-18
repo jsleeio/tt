@@ -239,21 +239,23 @@ _help() {
 
 _init
 
+if [[ "$#" -lt 1 ]] ; then
+  _help
+  exit 1
+fi
 
-case "$1" in
+word="$1"
+shift
+
+case "$word" in
   completion)
     words='date done exec find finder gc help home keep'
     words="$words last ls new newgo shell tag"
     words="$words tags title version"
     echo "$words"
   ;;
-  new|finder|find|shell|ls|'done'|keep|gc|title|date|'exec'|home|newgo|tag|tags)
-    cmd="$1"
-    shift
-    "_${cmd}" "$@"
-  ;;
-  last)
-    _last
+  new|finder|find|shell|last|ls|'done'|keep|gc|title|date|'exec'|home|newgo|tag|tags)
+    "_${word}" "$@"
   ;;
   version)
     echo 'tt 2.6'
