@@ -120,7 +120,7 @@ _exec() {
 }
 
 _finder() {
-  _is_macos || return
+  _is_macos || _die "this command only makes sense on macOS"
   _enter_current_or_arg "$1"
   open .
 }
@@ -139,6 +139,7 @@ _gc() {
 }
 
 _findercomment() {
+  _is_macos || _die "this command only makes sense on macOS"
   (
     echo '<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">'
     echo '<plist version="1.0">'
