@@ -241,7 +241,7 @@ _init
 
 case "$1" in
   completion)
-    words='date done exec gc help home keep'
+    words='date done exec find finder gc help home keep'
     words="$words last ls new newgo shell tag"
     words="$words tags title version"
     echo "$words"
