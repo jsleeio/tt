@@ -258,7 +258,7 @@ case "$word" in
     "_${word}" "$@"
   ;;
   version)
-    echo 'tt 2.6'
+    echo 'tt 2.7'
     exit 0
   ;;
   help)
