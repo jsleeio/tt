@@ -31,7 +31,7 @@ _find() {
   # have to be careful here to handle $_top_dir that might have
   # spaces in it. I *think* this approach is relatively safe
   # (can you have null chars in a unix path?)
-  find "$_top_dir" -type f -maxdepth 2 -name .tt_title -print0 \
+  find "$_top_dir" -maxdepth 2 -type f -name .tt_title -print0 \
     | while read -d $'\000' titlefile ; do 
         if grep -q "$1" "$titlefile" ; then
           basename "$(dirname "$titlefile")"
