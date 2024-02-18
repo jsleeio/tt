@@ -109,7 +109,7 @@ _readlast() {
 _last() {
   local _last
   _last=$(_readlast)
-  _shell "$_last"
+  _shell "$_last" "$@"
 }
 
 _exec() {
